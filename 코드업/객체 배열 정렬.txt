@@ -1,0 +1,43 @@
+package codeUp;
+import java.util.*;
+
+class People implements Comparable<People>{ ///
+	private String name;
+	private int age;
+	
+	public People(String name,int age) {
+		this.name=name;
+		this.age=age;
+	}
+	public String print() {
+		return name+"["+age+"]";
+	}
+	
+	@Override  ////
+	public int compareTo(People people) {
+		if(this.age<people.age)
+			return -1; // 자리를 바꾸지 않음 
+		else if(this.age==people.age)
+			return 0; // 자리를 바꾸지 않음
+		else
+			return 1; // 자리를 바꿈
+	}
+}
+public class class_array{
+	public static void main(String[] args) {
+		People[] arr= {new People("상현",20), 
+		new People("철수",14),new People("경완",31)
+		,new People("대호",20),new People("지운",24)};
+			
+		Arrays.sort(arr); 
+		// 오름차순이 됨(만약 compareTo의 리턴값이 반대면 내림차순)
+			
+		for(People i:arr) {
+			System.out.print(i.print());
+			}
+			
+	
+			
+
+		}
+	}

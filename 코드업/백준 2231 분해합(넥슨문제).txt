@@ -1,0 +1,47 @@
+package codeUp;
+import java.util.*;
+/*생성자를 출력
+ * 없으면 0을 출력
+ */
+
+public class codeup3016{
+	
+	static int N;
+	static int sum=0;
+	static int exist=0;
+
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		N=sc.nextInt(); 
+
+		loop:
+		for(int i=1;i<N-1;i++) {
+			if(func(i)==N) {
+				exist=1;
+				System.out.println(i);
+				break loop;
+			}
+			else {
+				sum=0; //!!!!!이걸 해야 위의 반복문마다 sum=0이 됨
+			}
+		}
+		if(exist==0) 
+			System.out.println(0);
+		
+	}
+	public static int func(int a) { 
+
+		if(sum==0) { //초기에 sum에 a를 더함
+			sum=a;
+		}
+		
+		if(a!=0) {
+			sum+=a%10;
+			return func(a/10);
+		}
+		else {
+			return sum;
+		}
+			
+}
+}

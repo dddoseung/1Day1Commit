@@ -1,0 +1,41 @@
+package codeUp;
+import java.util.*;
+/*(x,y)
+ * x는 몸무게(kg)
+ * y는 키(cm)
+ */
+class dung{
+	int x;
+	int y;
+	int grade;
+}
+
+public class codeup3016{
+	
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		int N=sc.nextInt();
+		dung[] darr=new dung[N];
+		
+		for(int i=1;i<=N;i++) {
+			dung tmp=new dung();
+			tmp.x=sc.nextInt();
+			tmp.y=sc.nextInt();
+			tmp.grade=1;
+			
+			darr[i-1]=tmp;
+		}
+		sc.close();
+		for(int i=0;i<N-1;i++) {
+			for(int j=i+1;j<N;j++) {
+				if(darr[i].x>darr[j].x && darr[i].y>darr[j].y)
+					darr[j].grade++;
+				else if(darr[i].x<darr[j].x && darr[i].y<darr[j].y)
+					darr[i].grade++;
+				else {}
+			}
+		}
+		for(dung l:darr)
+			System.out.print(l.grade+" ");
+	}
+}

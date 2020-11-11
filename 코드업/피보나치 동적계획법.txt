@@ -1,0 +1,29 @@
+package codeUp;
+import java.util.HashMap;
+
+public class codeup3016{
+    static int cnt=0, index=30, temp=0;
+    
+    public static void main(String[] args){
+        //동적계획법 
+    	HashMap<Integer, Integer> dp=new HashMap<Integer, Integer>();
+    	temp=DP_fibo(index,dp);
+    	
+    	System.out.println(temp+" 동적계획법: "+cnt);
+    }
+    public static int DP_fibo(int n, HashMap<Integer, Integer> dp){
+        cnt++;
+
+        if(dp.containsKey(n)) { //이미 연산해서 값이 있다면 바로 호출
+        	return dp.get(n);
+        }
+        else if(n<=2) {
+        	return 1;
+        }
+        else {
+        	int value=DP_fibo(n-1,dp)+DP_fibo(n-2,dp);
+        	dp.put(n,value);
+        	return dp.get(n);
+        }
+    }
+}
