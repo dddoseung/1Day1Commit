@@ -2,29 +2,40 @@ import java.util.Scanner;
 import java.util.Arrays;
 
 public class Q10830 {
-	static long[][] arr; // Çà·Ä
+	static long[][] arr; // í–‰ë ¬
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Scanner sc=new Scanner(System.in);
-		int N=sc.nextInt(); // Çà·ÄÀÇ Å©±â NxN
-		long B=sc.nextLong(); // Çà·ÄÀ» B¸¸Å­ Á¦°ö
+		int N=sc.nextInt(); // í–‰ë ¬ì˜ í¬ê¸° NxN
+		long B=sc.nextLong(); // í–‰ë ¬ì„ Bë§Œí¼ ì œê³±
 		arr=new long[N][N];
 		
 		for(int r=0;r<N;r++) {
 			for(int c=0;c<N;c++) {
-				arr[r][c]=sc.nextInt();
+				arr[r][c]=sc.nextLong();
 			}
 		}
-		System.out.println(Arrays.deepToString(func(B)));
+		sc.close();
 		
+		StringBuilder sb=new StringBuilder();
+		long[][] result=func(B); // result = active_arr
+		
+		for(int i=0;i<arr.length;i++) {
+			for(int j=0;j<arr.length;j++) {
+				sb.append(result[i][j]+ " ");
+			}
+			sb.append("\n");
+		}
+		System.out.println(sb);
 	}
+		
 	
 //	public static long[][] pow(long[][] n, long B) {
 //		if(B==1) {
 //			return n;
 //		}
-//		long[][] num=func(n,(B/2)); // º¹ÀâÇÑ ¿¬»ê °á°ú¸¦ num¿¡ ÀúÀåÇÏ°í
-//		long[][] tmp=num*num%1000; // ÀÌ¹Ì °è»êµÈ numÀ» ´Ü¼ø°ö¼ÀÇØÁØ´Ù.
+//		long[][] num=func(n,(B/2)); // ë³µì¡í•œ ì—°ì‚° ê²°ê³¼ë¥¼ numì— ì €ì¥í•˜ê³ 
+//		long[][] tmp=num*num%1000; // ì´ë¯¸ ê³„ì‚°ëœ numì„ ë‹¨ìˆœê³±ì…ˆí•´ì¤€ë‹¤.
 //		
 //		if(B%2==0) {
 //			
@@ -33,11 +44,15 @@ public class Q10830 {
 //		else
 //			return (tmp*n)%1000;
 //	}
-	public static long[][] func(long b) { // Çà·Ä ¿¬»ê
-		long[][] active_arr=new long[arr.length][arr[0].length];
+	public static long[][] func(long b) { // í–‰ë ¬ ì—°ì‚°
+		long[][] active_arr=new long[arr.length][arr[0].length]; // staticìœ¼ë¡œ ìœ„ì—ì„œ ì„ ì–¸í•˜ë©´ ì´ìƒí•œ ê²°ê³¼ ë‚˜ì˜´.
 		long[][] tmp=new long[arr.length][arr[0].length];
 		if(b==1) {
-			return arr;
+		     for (int i = 0; i < arr.length; i++) {
+		         for (int j = 0; j < arr[0].length; j++) {
+		           active_arr[i][j] = arr[i][j] % 1000;
+		         }
+		       }
 		}
 //		else {
 //			for(int i=0;i<arr.length;i++) {
@@ -57,7 +72,7 @@ public class Q10830 {
 			for(int i=0;i<arr.length;i++) {
 				for(int j=0;j<arr[0].length;j++) {
 					for(int k=0;k<arr[0].length;k++) {
-						active_arr[i][j]+=(tmp[i][k]*tmp[k][j])%1000;
+						active_arr[i][j]+=(tmp[i][k]*tmp[k][j]);
 					}
 				}
 			}
@@ -69,7 +84,7 @@ public class Q10830 {
 				for(int j=0;j<arr[0].length;j++) {
 					for(int k=0;k<arr[0].length;k++) {
 						
-						active_arr[i][j]+=(tmp[i][k]*arr[k][j])%1000;
+						active_arr[i][j]+=(tmp[i][k]*arr[k][j]);
 					}
 				}
 			}
