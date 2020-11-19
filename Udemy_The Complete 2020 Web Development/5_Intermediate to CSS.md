@@ -1,7 +1,8 @@
-css 폰트 설정방법 :
+<css 폰트 설정방법> 
 ===
 
-- 1.
+방법 1.
+
 ```
 //index.html
 
@@ -24,8 +25,8 @@ font-family: 'Sansita Swashed', cursive;
 css에서는 이거를 해주면 됨.
 
 ```
-
-* 2.
+----
+방법 2.
 
 ```
 //index.html
@@ -52,19 +53,17 @@ css에서는 이거를 해주면 됨.
 
 </head>
 
-
-
 <body>
 
-<p> hihi~ i'm developer. </p>
+  <p> hihi~ i'm developer. </p>
 
 </body>
 ```
 
-* * *
-<div>, <span> ... 등 차이점
+- - -
+<div, span 등 차이점>
 ===
    
-* 문자 일부분만을 선택해서 지정(inline) -> <span>,<b>,<img>
+* 문자 일부분만을 선택해서 지정(inline) -> span,b,img
 
-+ 넓은 범위를 묶어서 지정(block)-> <p>,<div>,<ol>,<ul>,<table>
++ 넓은 범위를 묶어서 지정(block)-> p,div,ol,ul,table
