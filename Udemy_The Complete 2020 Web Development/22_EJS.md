@@ -38,7 +38,8 @@ response.redircet("/work") // app.get("/work")으로 돌아간다
 -------
 ## Understanding Templating vs. Layouts
 ```
-<%- include("footer") -%>
+<%- include("footer") -%> // ==
+<%- include footer.ejs -%> // ==
 ```
 // footer.ejs 의 작성한 코드를 고대로 가져온다
 
