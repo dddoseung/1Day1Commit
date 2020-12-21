@@ -26,12 +26,12 @@ __api의 아키텍처 스타일__
 
           -> GET=READ / POST=CREATE / PUT&PATCH=UPDATE (PATCH는 데이터의 한 속성만 업데이트, PUT은 데이터 전체를 통째로 업데이트) / DELETE=DELETE
 
-
+<Br>
 
     * Use specific pattern of Routes/Endpoint URLs (사진 참고)
 
            -> /articles -> all articles
-		      /articles/JackBauber -> Specific article (계층적이며, URL는 정보의 자원을 표현해야 함)
+              /articles/JackBauber -> Specific article (계층적이며, URL는 정보의 자원을 표현해야 함)
 
    
 -----------------
