@@ -9,44 +9,43 @@ import java.util.StringTokenizer;
 // 그러므로 "이분탐색&lower_bound"라는 알고리즘을 사용해야 함
 // c++은 lower_bound의 함수가 있는데 java는 없어서 직접 구현해줘야 함
 
-//알고리즘의 진행은 다음과 같다.
-//리스트를 생성하고(C++에서는 벡터) 최솟값 하나를 넣어둔다.
-//입력받은 수 x와 벡터의 끝값 back을 비교해서 
-//x가 더 크다면 push back 하고 
-//길이 변수 cnt를 1 증가시킨다.
-//x가 더 작거나 같다면 lower bound를 찾고 
-//그 위치에 x를 넣는다.
-
 public class Q12015 {
-    private static final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-    public static void main(String[] args) throws IOException {
-        int n = Integer.parseInt(br.readLine());
-        int[] arr = new int[n];
-        List<Integer> list = new ArrayList<>();
-        list.add(0);
-
-        StringTokenizer st = new StringTokenizer(br.readLine(), " ");
-
-        for(int i = 0 ; i < n; i++) {
-            int value = arr[i] = Integer.parseInt(st.nextToken());
-            if(value > list.get(list.size() - 1)) list.add(value);
-            else{
-                int left = 0;
-                int right = list.size() - 1;
-
-                while(left < right){
-                    int mid = (left + right) >> 1;
-                    if(list.get(mid) >= value){
-                        right = mid;
-                    }else{
-                        left = mid + 1;
-                    }
-                }
-                list.set(right, value);
-            }
-        }
-        System.out.println(list.size() - 1);
-    }
+	static List<Integer> list = new ArrayList<>();
+	
+	public static void main(String[] args) throws IOException{
+		// TODO Auto-generated method stub
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int N = Integer.parseInt(br.readLine());
+		StringTokenizer st = new StringTokenizer(br.readLine()," ");
+		
+		list.add(0); // 비교를 위해 0을 미리 넣어줌
+		
+		for(int i=0;i<N;i++) {
+			int value = Integer.parseInt(st.nextToken());
+			
+			if(value>list.get(list.size()-1)) {
+				list.add(value);
+			}
+			else {
+				int low=0;
+				int high=list.size()-1;
+				
+				while(low<high) { // 이분탐색
+					int mid=(low+high)/2;
+					
+					if(value<=list.get(mid)) {
+						high = mid;
+					}
+					else {
+						low=mid+1;
+					}
+				}
+				list.set(high, value);
+			}
+		}
+		
+		System.out.println(list.size()-1); // 0은 제외
+	}
 
 }
