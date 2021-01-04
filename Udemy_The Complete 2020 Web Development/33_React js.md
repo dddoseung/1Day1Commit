@@ -1,0 +1,196 @@
+## Introduction to JSX and Babel
+
+JSX(JavaScript XML): javascript를 확장한 문법
+
+ // 위는 react jsx 아래는 html js
+ ```
+import React from "react";
+import ReactDOM from "react-dom";
+ 
+ReactDOM.render( // single HTML Element만 가능하므로
+  <div> // div로 묶어서 두 문장 출력
+   <h1>Hello, World!</h1>
+    <p>It's me.</p>
+  </div>,
+  document.getElementById("root")
+);
+ 
+<!-- ---------------------- -->
+ 
+var h1 = document.createElement("h1");
+h1.innerHTML = "Hello, World!";
+var p = document.createElement("p");
+p.innerHTML = "It's me.";
+ 
+document.getElementById("root").appendChild(h1);
+document.getElementById("root").appendChild(p);
+```
+----------
+
+## Javascript Expressions in JSX & ES6 Template Literals
+
+ // 다 같은 표현
+ ```
+    <h1>Hello {lname + " " + fname}! </h1> // 일반적 표현
+    <h1>Hello {lname} {fname}! </h1> // jsx 표현
+    <h1>Hello {`${lname}` +" "+ `${fname}`}! </h1> // jsx+ES6 표현
+
+ ```
+------
+
+
+## JSX Attributes & Styling React Elements
+js형식의 파일이 JSX 문법인 것을 전달하기 위해
+
+
+
+// [index.html]
+```
+<body>
+    <script src="../src/index.js" type="text/JSX"></script> // JSX
+</body>
+```
+
+--------------
+
+## React Components
+JSX의 가장 큰 장점이자 특징-> __컴포넌트__ 로 표현하는 것
+
+------------------
+
+## [Windows]​ Local Environment Setup for React Development
+React 개발환경 셋업하기
+
+
+
+1. Node.js 최신버전
+
+2. VSCode 설치
+
+3. vscode-icon, sublime babel 패키지 설치
+
+4. Hyper에 아래 코드입력
+```
+     npx create-react-app my-app
+     cd my-app
+     npm start
+```
+--------------------
+## React Props
+
+_[HTML Attributes]_
+```
+<input id="email" placeholder="enter text" value="abc@dsd.com" />
+
+
+
+document.getElementById("email")
+
+.id
+
+.placeholder
+
+.value
+```
+
+
+------------------------------------
+
+_[React Prop]_
+```
+<Card id="email" tel="01022233333" gender="female" />
+
+
+
+function Card(props) {
+
+  return( <div>
+
+       <p>{props.id}</p>
+
+       <p>{props.tel}</p>
+
+       <p>{props.gender}</p>
+
+       </div> )
+
+}
+```
+
+---------
+
+## Javascript ES6 Arrow functions
+
+```
+const newNumbers = numbers.map( x => {
+  return x * 2;
+});
+//방법 1
+
+const newNumbers = numbers.map( x => x * 2);
+//방법 2
+```
+--------
+
+## Conditional Rendering Practice
+
+JSX의 조건문
+
+```
+      {isLoggedIn===false ? <Login /> : <h1>hello</h1>} 
+
+    // or
+	
+      {isLoggedIn === false && <Login />} // isLoggedIn이 false이면 <Login /> 한다
+      {isLoggedIn === true && <h1>Hello</h1>}
+```
+-----
+## useState Hook Practice
+```
+import React, { useState } from "react";
+ 
+  const [count, setCount] = useState(1);// useState(initialState)
+ 
+  // useState = [initialState, function]
+  // this function is to update initialState
+```
+
+------
+## Javascript ES6 Object & Array Destructuring
+
+```
+// 예제 1
+
+const animals = [
+  { name: "cat", sound: "meow"},
+  { name: "dog", sound: "woof" }
+];
+-----------------------------------------------------
+const [cat, dog] = animals ;
+console.log(cat) // {name: "cat", sound: "meow"}
+ 
+const {name, sound} = cat;
+const {name: catName, sound: catSound} = cat; // name을 이제부터 catName이라고도 쓰겠다
+const {property: "pretty"} = cat; // 만약 없는 변수값이라면 이 변수값을 생성하겠다
+ 
+==================================================================
+//예제 2
+
+const [cat, dog] = animals;
+console.log(cat) // {name: "cat", sound: "moew" property: { p1: "cute", p2: "pretty"} }
+ 
+const {property: {p1, p2}} = cat;
+console.log(p1) // cute
+ 
+function useAnimals(animal) {
+   return[
+      animal.name,
+      function() {
+           console.log(animal.sound)
+      }
+  ];
+}
+const [name, makeSound] = useAnimals(cat);
+console.log(name) // cat
+makeSound() // console meow
+```
