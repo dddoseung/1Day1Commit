@@ -194,3 +194,61 @@ const [name, makeSound] = useAnimals(cat);
 console.log(name) // cat
 makeSound() // console meow
 ```
+
+-------------------------
+
+## React Forms
+
+```
+<form> 있을 경우
+```
+
+```
+function btnClick(event) {
+    tfFunc(current);
+ 
+    event.preventDefault(); // form의 onSubmit의 Default 이벤트 전파를 막음
+  }
+ 
+  return (
+    <div className="container">
+ 
+      //<form>의 default action은 새로고침되는 것-> 화면에서 정보가 사라짐
+      <form onSubmit={btnClick}>
+      <h1>Hello {tf}</h1>
+      <input onChange={EditWord} type="text" placeholder="What's your name?" />
+      <button type="submit">
+        Submit
+      </button>
+      </form>
+    </div>
+  );
+```  
+
+```
+<form> 없을 경우
+
+
+function btnClick() {
+    tfFunc(current);
+  }
+ 
+  return (
+    <div className="container">
+      <h1>Hello {tf}</h1>
+      <input onChange={EditWord} type="text" placeholder="What's your name?" />
+      <button type="submit" onClick={btnClick}>
+        Submit
+      </button>
+    </div>
+  );
+```
+------------------
+
+## Class Components vs. Functional Components
+
+_Should I use Hooks(functions), classes, or a mix of both?_
+
+-> Hook를 권장한다 (간결하며 요새 추구하는 코드스타일)
+
+
