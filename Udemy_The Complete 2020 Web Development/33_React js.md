@@ -201,9 +201,8 @@ makeSound() // console meow
 
 ```
 <form> 있을 경우
-```
 
-```
+
 function btnClick(event) {
     tfFunc(current);
  
