@@ -250,4 +250,47 @@ _Should I use Hooks(functions), classes, or a mix of both?_
 
 -> Hook를 권장한다 (간결하며 요새 추구하는 코드스타일)
 
+--------------------
 
+## Managing a Component Tree
+
+[Excuted on Render]
+```
+<div onClick={props.onChecked(props.idx)}> // 이렇게 하면 click하지 않았는데도 실행됨
+```
+[Excuted on Click]
+```
+<div onClick={ () => {props.onChecked(props.idx)}} // 이렇게 함수로 표현해야 trigger가 돼서 click으로 정상 작동됨
+```
+
+Render가 Click보다 우선순위가 되므로 함수로 표현해야 한다!
+
+-----------
+
+## Keeper App Project - Part 3
+
+React에서 __여러 input을 입력__ 하고 배열에 저장해야 할 때,
+
+```
+const [inputText, setInputText] = useState({ title: "", content: "" }); // 여러 input
+ 
+ function handleInputText(event) {
+    const { name, value } = event.target;
+ 
+    setInputText((prevNote) => {
+      return {
+        ...prevNote, // 중요!
+        [name]: value // [배열]이어야 함
+      };
+    });
+  }
+ ```
+_Keeper Part 3 Starting_ 파일 코드임
+
+-----------------
+
+## React Dependencies & Styling the Keeper App
+
+React는 bootstrap이나 fav-icon과 같은 css library를
+
+package를 다운받아 import해서 바로 사용할 수 있는 장점이 있음
