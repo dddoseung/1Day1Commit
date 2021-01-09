@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd"
+	default-init-method="default_init"
+	default-destroy-method="default_destroy">
+
+	<!-- init-method: 생성자 호출 이후 자동으로 메서드 호출 -->
+	<!-- destroy-method: 생성자 소멸 시 자동으로 메서드 호출 -->
+	<bean id="t1" class="kr.co.softcampus.beans.TestBean1"
+		lazy-init="true" init-method="bean1_init"
+		destroy-method="bean1_destroy" />
+
+	<!-- init-method와 destroy-method 모두 설정되어 있지 않다면 -->
+	<!-- 객체만 생성되고 아무것도 호출되지 않음 -->
+	<bean id="t2" class="kr.co.softcampus.beans.TestBean2"
+		lazy-init="true" />
+
+	<!-- 만약 init-method, destroy-method와 default method가 모두 있을 경우 -->
+	<!-- init-method, destroy-method에 설정된 메서드를 호출 -->
+	<bean id="t3" class="kr.co.softcampus.beans.TestBean3"
+		lazy-init="true" init-method="bean3_init"
+		destroy-method="bean3_destroy" />
+
+	<!-- init-method, destroy-method 설정되어 있지 않고 default method는 설정되어 있을 경우 -->
+	<!-- default 메서드 호출 -->
+	<bean id="t4" class="kr.co.softcampus.beans.TestBean4"
+		lazy-init="true" />
+
+
+</beans>
