@@ -70,3 +70,18 @@
 * __default-init-method:__ __init-method를 설정하지 않은 경우 & default method를 선언한 경우__ 자동으로 호출된다.
 
 + __default-destroy-method:__ __destroy-method를 설정하지 않은 경우 & default method를 선언한 경우__ 자동으로 호출된다.
+
+-----------------
+
+## BeanPostProcessor
+
+BeanPostProcessor: init-method가 호출될 때 __이를 가로채__ 다른 메서드를 호출할 수 있도록 함
+
+
+(다른 패키지에 클래스에 코드 작성됨)
+
+* __postProcessBeforeInitialization:__ init-method가 호출되기 __전에__ 호출된다.
+
++ __postProcessAfterInitialization:__ init-method가 호출된 __후에__ 호출된다.
+
+( // init-method가 지정되어 있지 않더라도 호출된다.)
