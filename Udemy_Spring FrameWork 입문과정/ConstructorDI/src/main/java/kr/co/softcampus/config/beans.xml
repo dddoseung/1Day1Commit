@@ -6,4 +6,60 @@ http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 	<bean lazy-init="true" id="obj1"
 		class="kr.co.softcampus.beans.TestBean" />
+	<bean id="obj2" lazy-init="true"
+		class="kr.co.softcampus.beans.TestBean">
+		<constructor-arg value='100' type='int' />
+		<!-- 생성자의 매개변수로 100이라는 값을 넣겠다 -->
+	</bean>
+
+	<bean id="obj3" lazy-init="true"
+		class="kr.co.softcampus.beans.TestBean">
+		<constructor-arg value='11.11' type='double' />
+	</bean>
+
+	<bean id="obj4" lazy-init="true"
+		class="kr.co.softcampus.beans.TestBean">
+		<constructor-arg value='문자열' />
+	</bean>
+
+	<bean id="obj5" lazy-init="true"
+		class="kr.co.softcampus.beans.TestBean">
+		<constructor-arg value='1' type="int" />
+		<constructor-arg value='1.1' type='double' />
+		<constructor-arg value='안녕하세요' type='java.lang.String' />
+	</bean>
+
+	<bean id="obj6" lazy-init="true"
+		class="kr.co.softcampus.beans.TestBean">
+		<constructor-arg value='안녕하세요' type='java.lang.String' />
+		<constructor-arg value='1' type="int" />
+		<constructor-arg value='1.1' type='double' />
+	</bean>
+
+	<bean id="obj7" lazy-init="true"
+		class="kr.co.softcampus.beans.TestBean">
+		<constructor-arg value='안녕하세요' type='java.lang.String'
+			index='2' />
+		<constructor-arg value='1' type="int" index='0' />
+		<constructor-arg value='1.1' type='double' index='1' />
+	</bean>
+
+	<bean id="obj8" lazy-init="true"
+		class="kr.co.softcampus.beans.TestBean2">
+		<!-- 객체주입 -->
+		<constructor-arg>
+			<bean class="kr.co.softcampus.beans.DataBean" />
+		</constructor-arg>
+		<constructor-arg>
+			<bean class="kr.co.softcampus.beans.DataBean" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="data_bean" scope="prototype"
+		class="kr.co.softcampus.beans.DataBean" />
+	<bean id="obj9" lazy-init="true"
+		class="kr.co.softcampus.beans.TestBean2">
+		<constructor-arg ref="data_bean" />
+		<constructor-arg ref="data_bean" />
+	</bean>
 </beans>
