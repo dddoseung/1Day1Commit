@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="obj1" class="kr.co.softcampus.beans.TestBean1">
+		<property name='data1' ref="data_bean1" />
+		<property name="data2" ref="data_bean1" />
+	</bean>
+	
+	<bean id="data_bean1" class="kr.co.softcampus.beans.DataBean1"
+		scope="prototype" />
+
+
+	<!-- autowire="byName" -->
+	<bean id="obj2" class="kr.co.softcampus.beans.TestBean1" autowire="byName" />
+	
+	<!-- bean의 id를 TestBean1의 DataBean1 객체와 이름이 같게 함 -->
+	<bean id="data1" class="kr.co.softcampus.beans.DataBean1"/>
+	<bean id="data2" class="kr.co.softcampus.beans.DataBean1"/>
+	
+	
+	<!-- autowire="byType" -->
+	<bean id="obj3" class="kr.co.softcampus.beans.TestBean2" autowire="byType" />
+	
+	<bean class="kr.co.softcampus.beans.DataBean2"/>
+
+
+</beans>
