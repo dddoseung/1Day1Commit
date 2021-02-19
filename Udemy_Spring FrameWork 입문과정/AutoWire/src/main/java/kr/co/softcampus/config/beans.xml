@@ -2,29 +2,61 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
-http://www.springframework.org/schema/beans/spring-beans.xsd">
+http://www.springframework.org/schema/beans/spring-beans.xsd"
+	default-autowire="byName">
 
 	<bean id="obj1" class="kr.co.softcampus.beans.TestBean1">
-		<property name='data1' ref="data_bean1" />
-		<property name="data2" ref="data_bean1" />
+		<property name="data1" ref='data_bean1'></property>
+		<property name="data2" ref='data_bean1'></property>
 	</bean>
 	
-	<bean id="data_bean1" class="kr.co.softcampus.beans.DataBean1"
-		scope="prototype" />
-
-
-	<!-- autowire="byName" -->
-	<bean id="obj2" class="kr.co.softcampus.beans.TestBean1" autowire="byName" />
+	<bean id="data_bean1" class="kr.co.softcampus.beans.DataBean1" scope='prototype'/>
 	
-	<!-- bean의 id를 TestBean1의 DataBean1 객체와 이름이 같게 함 -->
+	<!-- autowire-자동 주입 -->
+	<bean id="obj2" class="kr.co.softcampus.beans.TestBean1" autowire="byName"/>
+	<!-- byName: bean의 id와 TestBean1의 변수의 이름이 같아야 함 -->
 	<bean id="data1" class="kr.co.softcampus.beans.DataBean1"/>
 	<bean id="data2" class="kr.co.softcampus.beans.DataBean1"/>
+
+	<!-- byType: bean의 타입과 TestBean2의 변수의 타입이 같아야 함 -->
+	<bean id="obj3" class="kr.co.softcampus.beans.TestBean2" autowire="byType"/>
+
+	<bean class="kr.co.softcampus.beans.DataBean2" scope="prototype"/>
+
+	<!-- constructorDI 로 주입 -->
+	<bean id="obj4" class="kr.co.softcampus.beans.TestBean3">
+		<constructor-arg ref="data_bean3" index="0"/>
+		<constructor-arg ref="data_bean3" index="1"/>
+	</bean>
 	
-	
-	<!-- autowire="byType" -->
-	<bean id="obj3" class="kr.co.softcampus.beans.TestBean2" autowire="byType" />
-	
-	<bean class="kr.co.softcampus.beans.DataBean2"/>
+	<bean id="data_bean3" class="kr.co.softcampus.beans.DataBean3" scope='prototype'/>
+
+	<!-- autowire-자동 주입 -->
+	<!-- bean의 타입과 TestBean3 생성자의 매개변수의 타입이 같아야 함 -->
+	<bean id="obj5" class="kr.co.softcampus.beans.TestBean3" autowire="constructor"/>
 
 
+	<!-- constructorDI 로 주입 -->
+	<bean id="obj6" class="kr.co.softcampus.beans.TestBean3">
+		<constructor-arg value='1000' index='0' type='int'/>
+		<constructor-arg value='HIHIHIH' index='1'/>
+		<constructor-arg ref="data_bean3" index='2'/>
+		<constructor-arg ref="data_bean3" index='3'/>
+	</bean>
+	
+	<!-- autowire-자동 주입 -->
+	<!-- bean의 타입과 TestBean3 생성자의 매개변수의 타입이 같아야 함 -->
+	<bean id="obj7" class="kr.co.softcampus.beans.TestBean3" autowire='constructor'>
+		<constructor-arg value='2000' index='0' type='int'/>
+		<constructor-arg value='BYEBYEBYEBYe' index='1'/>
+	</bean>
+	
+	<!-- default-autowire 주입 -->
+	<!-- autowire을 따로 적용하지 않거나 값을 따로 주입하지 않았을 때 -->
+	<!-- default-autowire가 적용된다. -->
+	<bean id="obj8" class="kr.co.softcampus.beans.TestBean1"/>
+	
+	<!-- default-autowire 주입 거부 -->
+	<!-- autowire="no" 해주면 된다. -->
+	<bean id="obj9" class="kr.co.softcampus.beans.TestBean1" autowire="no"/>
 </beans>

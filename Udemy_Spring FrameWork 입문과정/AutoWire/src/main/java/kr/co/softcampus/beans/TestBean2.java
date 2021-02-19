@@ -3,6 +3,7 @@ package kr.co.softcampus.beans;
 public class TestBean2 {
 	private DataBean2 data1;
 	private DataBean2 data2;
+	
 	public DataBean2 getData1() {
 		return data1;
 	}
@@ -15,4 +16,6 @@ public class TestBean2 {
 	public void setData2(DataBean2 data2) {
 		this.data2 = data2;
 	}
+	
+	
 }
